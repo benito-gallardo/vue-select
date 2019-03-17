@@ -67,9 +67,7 @@
     -moz-appearance: none;
     appearance: none;
     display: flex;
-    padding: 0 0 4px 0;
     background: none;
-    border: 1px solid rgba(60, 60, 60, .26);
     border-radius: 4px;
     white-space: normal;
   }
@@ -77,7 +75,7 @@
     display: flex;
     flex-basis: 100%;
     flex-grow: 1;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     padding: 0 2px;
     position: relative;
   }
@@ -119,18 +117,29 @@
     top: 100%;
     left: 0;
     z-index: 1000;
-    min-width: 160px;
-    padding: 5px 0;
+    min-width: 0;
     margin: 0;
     width: 100%;
     overflow-y: auto;
-    border: 1px solid rgba(0, 0, 0, .26);
-    box-shadow: 0px 3px 6px 0px rgba(0,0,0,.15);
-    border-top: none;
     border-radius: 0 0 4px 4px;
     text-align: left;
     list-style: none;
     background: #fff;
+  }
+  .v-select .dropdown-menu li {
+    padding:.8rem!important;
+    transition: background .3s ease;
+  }
+  .v-select .dropdown-menu li.active {
+    background:#3BD2A2;
+  }
+  .v-select .dropdown-menu li:hover {
+    background: #58D9B0;
+  }
+  .v-select .dropdown-menu li:hover > a 
+  .v-select .dropdown-menu li.active > a {
+    color:white!important;
+    font-weight: bold;
   }
   .v-select .no-options {
     text-align: center;
@@ -140,7 +149,6 @@
     display: flex;
     align-items: center;
     background-color: #f0f0f0;
-    border: 1px solid #ccc;
     border-radius: 4px;
     color: #333;
     line-height: 1.42857143; /* Normalize line height */
@@ -153,7 +161,7 @@
     border-color: transparent;
   }
   .v-select.single.open .selected-tag {
-    position: absolute;
+    position: relative;
     opacity: .4;
   }
   .v-select.single.searching .selected-tag {
@@ -219,28 +227,10 @@
   }
   .v-select li > a {
     display: block;
-    padding: 3px 20px;
     clear: both;
-    color: #333; /* Overrides most CSS frameworks */
-    white-space: nowrap;
   }
   .v-select li:hover {
     cursor: pointer;
-  }
-  .v-select .dropdown-menu .active > a {
-    color: #333;
-    background: rgba(50, 50, 50, .1);
-  }
-  .v-select .dropdown-menu > .highlight > a {
-    /*
-     * required to override bootstrap 3's
-     * .dropdown-menu > li > a:hover {} styles
-     */
-    background: #5897fb;
-    color: #fff;
-  }
-  .v-select .highlight:not(:last-child) {
-    margin-bottom: 0; /* Fixes Bulma Margin */
   }
   /* Loading Spinner */
   .v-select .spinner {
@@ -360,7 +350,9 @@
           <span aria-hidden="true">&times;</span>
         </button>
 
-        <i v-if="!noDrop" ref="openIndicator" role="presentation" class="open-indicator"></i>
+        <slot name="open-icon" v-if="!noDrop">
+          <i  ref="openIndicator" role="presentation" class="open-indicator"></i>
+        </slot>
 
         <slot name="spinner">
           <div class="spinner" v-show="mutableLoading">Loading...</div>

@@ -128,7 +128,7 @@
     background: #fff;
   }
   .v-select .dropdown-menu li {
-    padding:.8rem!important;
+    padding:.8rem;
     transition: background .3s ease;
   }
   .v-select .dropdown-menu li.active {
@@ -137,7 +137,7 @@
   .v-select .dropdown-menu li:hover {
     background: #58D9B0;
   }
-  .v-select .dropdown-menu li:hover > a 
+  .v-select .dropdown-menu li:hover > a, 
   .v-select .dropdown-menu li.active > a {
     color:white!important;
     font-weight: bold;
@@ -350,11 +350,11 @@
         >
           <span aria-hidden="true">&times;</span>
         </button>
-
-        <slot name="open-icon" v-if="!noDrop">
-          <i  ref="openIndicator" role="presentation" class="open-indicator"></i>
-        </slot>
-
+        <div v-if="!noDrop" class="open-icon-wrap">
+          <slot name="open-icon" ref="testIndicator">
+            <i class="open-indicator" ref="openIndicator" role="presentation"></i>
+          </slot>
+        </div>
         <slot name="spinner">
           <div class="spinner" v-show="mutableLoading">Loading...</div>
         </slot>
@@ -899,7 +899,7 @@
        */
       toggleDropdown(e) {
         if (e.target === this.$refs.openIndicator || e.target === this.$refs.search || e.target === this.$refs.toggle ||
-            e.target.classList.contains('selected-tag') || e.target === this.$el) {
+            e.target.classList.contains('selected-tag') || e.target === this.$el || e.target.classList.contains('fa')) {
           if (this.open) {
             this.$refs.search.blur() // dropdown will close on blur
           } else {

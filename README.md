@@ -107,6 +107,9 @@ When provided an array of objects, `vue-select` will display a single value of t
 
 ### For more information, please visit the [vue-select documentation.](https://sagalbot.github.io/vue-select)
 
+#### Notes
+To `import` make sure you are runing `npm run build` to update the `/dist` folder before you push up.
+
 ## License
 
 [MIT](https://github.com/sagalbot/vue-select/blob/master/LICENSE.md)

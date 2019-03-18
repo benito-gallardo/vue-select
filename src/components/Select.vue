@@ -15,7 +15,7 @@
      attribute does most of the work for us by rearranging the child elements visually.
    */
   .v-select[dir="rtl"] .vs__actions {
-    padding: 0 3px 0 6px;
+    padding: 0 3px 0 10px;
   }
   .v-select[dir="rtl"] .dropdown-toggle .clear {
     margin-left: 6px;
@@ -41,22 +41,22 @@
     width: 12px; /* To account for extra width from rotating. */
   }
   .v-select .open-indicator:before {
-    border-color: rgba(60, 60, 60, .5);
     border-style: solid;
-    border-width: 3px 3px 0 0;
+    border-width: 10px 6px 0 6px;
+    border-color: #000 transparent transparent transparent;
     content: '';
     display: inline-block;
-    height: 10px;
+    height: 12px;
     width: 10px;
     vertical-align: text-top;
-    transform: rotate(133deg);
+    transform: rotate(360deg);
     transition: all 150ms cubic-bezier(1.000, -0.115, 0.975, 0.855);
     transition-timing-function: cubic-bezier(1.000, -0.115, 0.975, 0.855);
     box-sizing: inherit;
   }
   /* Open Indicator States */
   .v-select.open .open-indicator:before {
-    transform: rotate(315deg);
+    transform: rotate(180deg);
   }
   .v-select.loading .open-indicator {
     opacity: 0;
@@ -64,6 +64,7 @@
 
   /* Dropdown Toggle */
   .v-select .dropdown-toggle {
+    border: 1px solid #E0E0E0;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -76,27 +77,32 @@
     display: flex;
     flex-basis: 100%;
     flex-grow: 1;
-    flex-wrap: nowrap;
-    padding: 0 2px;
+    flex-wrap: wrap;
+    padding: 0 2px 0 6px;
     position: relative;
+    min-height:45px;
+  }
+  .v-select.single:not(.searchable) .vs__selected-options {
+    flex-wrap:nowrap;
   }
   .v-select .vs__actions {
     display: flex;
-    align-items: stretch;
-    padding: 0 6px 0 3px;
+    align-items: center;
+    padding: 0 10px 0 3px;
   }
 
   /* Clear Button */
   .v-select .dropdown-toggle .clear {
     font-size: 23px;
-    font-weight: 700;
     line-height: 1;
-    color: rgba(60, 60, 60, 0.5);
+    color: #cccccc;
     padding: 0;
     border: 0;
     background-color: transparent;
     cursor: pointer;
     margin-right: 6px;
+    position: relative;
+    top:-3px;
   }
 
   /* Dropdown Toggle States */
@@ -113,6 +119,8 @@
   }
   /* Dropdown Menu */
   .v-select .dropdown-menu {
+    padding:0;
+    border: 1px solid #E0E0E0;
     display:block;
     position: absolute;
     top: 100%;
@@ -152,8 +160,7 @@
     background-color: #f0f0f0;
     border-radius: 4px;
     color: #333;
-    line-height: 1.42857143; /* Normalize line height */
-    margin: 4px 2px 0px 2px;
+    margin: 4px 2px 4px 2px;
     padding: 0 0.25em;
     transition: opacity .25s;
   }
@@ -201,13 +208,11 @@
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    line-height: 1.42857143;
     font-size: 1em;
     display: inline-block;
     border: 1px solid transparent;
     border-left: none;
     outline: none;
-    margin: 4px 0 0 0;
     padding: 0 7px;
     max-width: 100%;
     background: none;
@@ -223,9 +228,6 @@
   }
 
   /* List Items */
-  .v-select li {
-    line-height: 1.42857143; /* Normalize line height */
-  }
   .v-select li > a {
     display: block;
     clear: both;
